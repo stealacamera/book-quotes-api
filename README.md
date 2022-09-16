@@ -13,6 +13,7 @@ Methods in italic are only accessable by users and apply only to their respectiv
 | Endpoint  | HTTP methods | Description |
 | --- | --- | --- |
 | `register/` | `POST` |
+| `change-password/` | `POST` |
 | `login/` | `POST` |
 | `logout/` | `GET` |
 | `user/` | *`GET`* | Get logged-in user's profile |

@@ -14,11 +14,30 @@ class RegisterTestCase(APITestCase):
         response = self.client.post(reverse('register'), data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-class LoginLogout(APITestCase):
+class ChangePasswordTestCase(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='example', password='password')
+    
+    def test_changepassword(self):
+        token = Token.objects.get(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
+        data = {'current_password': 'password',
+                'new_password': 'password'}
+        
+        response = self.client.post(reverse('change-password'), data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
+        data = {'current_password': 'password',
+                'new_password': 'password2'}
+        
+        response = self.client.post(reverse('change-password'), data)
+        self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
+
+class LoginLogoutTestCase(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='example',
-                                        email='example@example.com',
-                                        password='password')
+                                             email='example@example.com',
+                                             password='password')
     
     def test_login(self):
         data = {'username': 'example',
@@ -31,7 +50,7 @@ class LoginLogout(APITestCase):
         token = Token.objects.get(user=self.user)
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
         
-        response = self.client.get(reverse('logout'))
+        response = self.client.post(reverse('logout'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 class ProfileTestCase(APITestCase):

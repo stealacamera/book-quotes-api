@@ -30,6 +30,29 @@ class RegisterSerializer(serializers.ModelSerializer):
         account.save()
         return account        
 
+class PasswordChangeSerializer(serializers.ModelSerializer):
+    current_password = serializers.CharField(write_only=True)
+    new_password = serializers.CharField(write_only=True)
+    
+    class Meta:
+        model = User
+        fields = ['current_password', 'new_password']
+    
+    def save(self):
+        account = self.context['request'].user
+        current_password = self.validated_data['current_password']
+        new_password = self.validated_data['new_password']
+        
+        if not account.check_password(current_password):
+            raise serializers.ValidationError({'Error: This isn\'t the current password.'})
+        
+        if current_password == new_password:
+            raise serializers.ValidationError({'Error: New password should be different from current one.'})
+        
+        account.set_password(new_password)
+        account.save()
+        return account
+
 class ProfileSerializer(serializers.ModelSerializer):
     user_quotes = serializers.StringRelatedField(many=True)
     

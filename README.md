@@ -34,9 +34,18 @@ Methods in italic are only accessable by users and apply only to their respectiv
 | `<pk>/` | `GET` *`PUT`* *`PATCH`* *`DELETE`* |
 
 ## Usage
-
-![postman register](https://user-images.githubusercontent.com/113174127/190852979-a2e2c11c-8a40-4f6a-aa72-6dfcc056e42f.PNG)
-
+- **Register**
+![Postman register user](usage_photos/postman_register.png)
+- **Get all registered user profiles**
+![Postman GET user profiles](usage_photos/postman_accounts.png)
+- **Get all categories**
+![Postman GET categories](usage_photos/postman_categories.png)
+- **Get all books**
+![Postman GET books](usage_photos/postman_books.png)
+- **Get all quotes**
+![Postman GET quotes](usage_photos/postman_quotes.png)
+- **Create quote**
+![Postman POST quote](usage_photos/postman_create_quote.png)
 
 ## Installation
 1. **Clone the repo**

@@ -28,8 +28,9 @@ class ChangePasswordView(APIView):
         serialized = PasswordChangeSerializer(data=request.data, context={'request': request})
         serialized.is_valid(raise_exception=True)
         serialized.save()
+        request.user.auth_token.delete()
         
-        return Response({'Password changed successfully!'}, status=status.HTTP_202_ACCEPTED)
+        return Response({'Password changed successfully! Please log in again.'}, status=status.HTTP_202_ACCEPTED)
 
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]

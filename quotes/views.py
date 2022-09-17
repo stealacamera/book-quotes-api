@@ -10,25 +10,25 @@ from .serializers import AuthorSerializer, BookSerializer, QuoteSerializer, Cate
 from .permissions import QuotePermission, ContentPermission
 
 class AuthorDisplay(ModelViewSet):
-    queryset = Author.objects.all().order_by('-id')
+    queryset = Author.objects.all().order_by('id')
     serializer_class = AuthorSerializer
     
     permission_classes = [ContentPermission]
 
 class BookDisplay(ModelViewSet):
-    queryset = Book.objects.all().order_by('-id')
+    queryset = Book.objects.all().order_by('id')
     serializer_class = BookSerializer
 
     permission_classes = [ContentPermission]
 
 class CategoryDisplay(ModelViewSet):
-    queryset = Category.objects.all().order_by('-id')
+    queryset = Category.objects.all().order_by('id')
     serializer_class = CategorySerializer
     
     permission_classes = [ContentPermission]
 
 class QuoteDisplay(ModelViewSet):
-    queryset = Quote.objects.all().order_by('-id')
+    queryset = Quote.objects.all().order_by('id')
     serializer_class = QuoteSerializer
     
     permission_classes = [QuotePermission]

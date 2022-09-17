@@ -13,8 +13,9 @@ Methods in italic are only accessable by users and apply only to their respectiv
 | Endpoint  | HTTP methods | Description |
 | --- | --- | --- |
 | `register/` | `POST` |
-| `login/` | `POST` |
-| `logout/` | `GET` |
+| `change-password/` | *`POST`* |
+| `login/` | `POST` | Enter username & password to log in |
+| `logout/` | *`GET`* |
 | `user/` | *`GET`* | Get logged-in user's profile |
 | `all/` | `GET` | Get all existing profiles |
 | `all/<pk>/` | `GET` |
@@ -31,6 +32,11 @@ Methods in italic are only accessable by users and apply only to their respectiv
 | `categories/<pk>/` | `GET` **`PUT`** **`PATCH`** **`DELETE`** |
 | ` ` | `GET` *`POST`* | Get list of quotes |
 | `<pk>/` | `GET` *`PUT`* *`PATCH`* *`DELETE`* |
+
+## Usage
+
+![postman register](https://user-images.githubusercontent.com/113174127/190852979-a2e2c11c-8a40-4f6a-aa72-6dfcc056e42f.PNG)
+
 
 ## Installation
 1. **Clone the repo**

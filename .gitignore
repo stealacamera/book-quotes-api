@@ -1,4 +1,8 @@
-*.db*
+*.log
+*.pot
+*.pyc
 db.sqlite3
-__pycache__/
+__pycache__
+
 *.py[cod]
+*$py.class

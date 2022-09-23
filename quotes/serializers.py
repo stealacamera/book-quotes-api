@@ -1,29 +1,6 @@
 from rest_framework import serializers
 from .models import Author, Book, Quote, Category
 
-#
-# Related fields
-# Outputs names, instead of ids
-#
-
-class AuthorsRelatedField(serializers.RelatedField):
-    def to_representation(self, value):
-        return str(value)
-
-    def to_internal_value(self, data):
-        return Author.objects.get(name=data)
-
-class CategoryRelatedField(serializers.RelatedField):
-    def to_representation(self, value):
-        return str(value)
-    
-    def to_internal_value(self, data):
-        return Category.objects.get(category=data)
-
-#
-# Model serializers
-#
-
 class AuthorSerializer(serializers.ModelSerializer):
     books = serializers.StringRelatedField(read_only=True, many=True)
     
@@ -33,7 +10,7 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 class BookSerializer(serializers.ModelSerializer):
     quotes = serializers.StringRelatedField(read_only=True, many=True)
-    authors = AuthorsRelatedField(queryset=Author.objects.all(), many=True)
+    authors = serializers.SlugRelatedField(queryset=Author.objects.all(), many=True, slug_field='name')
     
     class Meta:
         model = Book
@@ -48,7 +25,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class QuoteSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    categories = CategoryRelatedField(queryset=Category.objects.all(), many=True)
+    categories = serializers.SlugRelatedField(queryset=Category.objects.all(), many=True, slug_field='category')
     
     class Meta:
         model = Quote

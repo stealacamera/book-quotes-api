@@ -6,8 +6,10 @@
 - **User**: can add/fetch quote objects, can change/remove only their own objects.
 
 ## API endpoints
-<sub>*Methods in bold are only accessable by admins.  
+<sub>*Uses Django token authentication.  
+Methods in bold are only accessable by admins.  
 Methods in italic are only accessable by users and apply only to their respective objects.*</sub>
+
 ### User endpoints  
 `http://localhost:5000/account/`
 | Endpoint  | HTTP methods | Description |
@@ -55,7 +57,7 @@ git clone https://github.com/stealacamera/book-quotes-api.git
 2. **Create and activate a virtual environment**
 ```
 virtualenv <venv name>
-<venv name>/Scripts/activate
+<venv name>\Scripts\activate
 ```
 3. **Install the dependencies**
 ```
